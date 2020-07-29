@@ -37,16 +37,24 @@ function calculateKnightMovment(position) {
     return possibleMovments;
 }
 
-const getPossibleKnightMovments = (req, res) => {
-    const knightPosition = req.body.position;
+const getPossibleMovmentsByPosition = (req, res) => {
+    const chessPiece = req.body.position;
     
     try {
-        res.status(200).send(calculateKnightMovment(req.body.position));
+        switch (req.params.piece) {
+            case 'knight':
+                res.status(200).send(calculateKnightMovment(req.body.position));
+                break;
+
+            default:
+                res.status(404).send(`404 ${req.params.piece} Not Found. This piece does not exist.`);
+                break;
+            }
     } catch (error) {
         throw error;
     }
 }
 
 module.exports = {
-    getPossibleKnightMovments
+    getPossibleMovmentsByPosition
 }

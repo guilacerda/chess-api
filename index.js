@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
     })
 });
 
-app.post('/movement', movements.getPossibleKnightMovments);
+app.post('/movement/:piece', movements.getPossibleMovmentsByPosition);
 
 app.listen(port, () => {
     console.log(`App running on port ${port}`);
