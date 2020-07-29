@@ -79,11 +79,10 @@ function calculateRookMovment(position) {
 
 const getPossibleMovementsByPosition = (req, res) => {
     const chessPiece = req.body.position;
-    console.log(req.body.position);
+
     try {
         switch (req.params.piece) {
             case 'knight':
-                console.log('entra');
                 res.status(200).send(calculateKnightMovment(req.body.position));
                 break;
 
