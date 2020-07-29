@@ -15,7 +15,7 @@ app.use(
 
 app.get('/', (req, res) => {
     res.json({
-        info: 'Chess API running on 3000'
+        post: '/movement/:piece'
     })
 });
 
