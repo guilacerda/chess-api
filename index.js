@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
+const movements = require('./movments');
+
 app.use(bodyParser.json());
 app.use(
     bodyParser.urlencoded({
@@ -16,6 +18,8 @@ app.get('/', (req, res) => {
         info: 'Chess API running on 3000'
     })
 });
+
+app.post('/movement', movements.getPossibleKnightMovments);
 
 app.listen(port, () => {
     console.log(`App running on port ${port}`);
