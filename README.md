@@ -5,6 +5,18 @@
 
 This document provides guidelines and examples for Chess API.
 
+# How to run the API
+
+We recommend to use docker and docker-compose to run the Chess API.
+
+You just need to run the following command:
+
+```
+docker-compose up chess-api
+```
+
+**Obs: You can't have any project running on port 3000.**
+
 # HTTP Verbs
 
 |HTTP METHOD| VERB | PARAMETER | DESCRIPTION |
@@ -30,7 +42,6 @@ This document provides guidelines and examples for Chess API.
 * 404: Not Found (This piece does not exist)
 
 # How to contribute
-
 We will very happy to receive your contributions. 
 
 In general, the proccess is very easy:
