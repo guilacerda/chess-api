@@ -40,6 +40,8 @@ In general, the proccess is very easy:
 - Open a pull request describing all proposed changes.
 - The PR will be reviewed and, probably, accepted. (Maybe you will have to make some changes).
 
+* To learn more about the code to contributing, read this [document](https://github.com/guilacerda/chess-api/blob/master/docs/CONTRIBUTING.md).
+
 # License
 
 The entire project is developed unde the MIT license.
