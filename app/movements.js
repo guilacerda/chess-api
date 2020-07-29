@@ -21,12 +21,12 @@ function calculateKnightMovment(position) {
     for (let i = 0; i < xPossibleMovements.length; i++) {
 
         // Condition to return only allowed movements (considering the board border)
-        if(positionsEquivalences[position[1]] + xPossibleMovements[i] >= positionsEquivalences.A &&
-           positionsEquivalences[position[1]] + xPossibleMovements[i] <= positionsEquivalences.H &&
-           parseInt(position[2]) + yPossibleMovements[i] >= positionsEquivalences.A &&
-           parseInt(position[2]) + yPossibleMovements[i] <= positionsEquivalences.H){
-                xMovment = parseInt(positionsEquivalences[position[1]]) + xPossibleMovements[i];
-                yMovment = parseInt(position[2]) + yPossibleMovements[i];
+        if(positionsEquivalences[position[0]] + xPossibleMovements[i] >= positionsEquivalences.A &&
+           positionsEquivalences[position[0]] + xPossibleMovements[i] <= positionsEquivalences.H &&
+           parseInt(position[1]) + yPossibleMovements[i] >= positionsEquivalences.A &&
+           parseInt(position[1]) + yPossibleMovements[i] <= positionsEquivalences.H){
+                xMovment = parseInt(positionsEquivalences[position[0]]) + xPossibleMovements[i];
+                yMovment = parseInt(position[1]) + yPossibleMovements[i];
                 possibleMovements.push(
                     (utilGeneral.getKeyByValue(positionsEquivalences, xMovment)) +
                     (yMovment).toString());
@@ -36,38 +36,39 @@ function calculateKnightMovment(position) {
     let responsePossibleMovements = [];
     responsePossibleMovements.push({"movements": possibleMovements});
     
+    console.log(responsePossibleMovements)
     return responsePossibleMovements;
 }
 
 function calculateRookMovment(position) {
     var possibleMovements = [];
     
-    for (let i = 1; i <= (positionsEquivalences[position[1]] - positionsEquivalences.A); i++) {
-        let auxPosition = positionsEquivalences[position[1]] - i;
+    for (let i = 1; i <= (positionsEquivalences[position[0]] - positionsEquivalences.A); i++) {
+        let auxPosition = positionsEquivalences[position[0]] - i;
 
         if(auxPosition >= positionsEquivalences.A)
-            possibleMovements.push((utilGeneral.getKeyByValue(positionsEquivalences, auxPosition)) + position[2]);    
+            possibleMovements.push((utilGeneral.getKeyByValue(positionsEquivalences, auxPosition)) + position[1]);    
     }
 
-    for (let i = 1; i <= (positionsEquivalences.H - positionsEquivalences[position[1]]); i++) {
-        let auxPosition = positionsEquivalences[position[1]] + i;
+    for (let i = 1; i <= (positionsEquivalences.H - positionsEquivalences[position[0]]); i++) {
+        let auxPosition = positionsEquivalences[position[0]] + i;
 
         if( auxPosition <= positionsEquivalences.H)
-            possibleMovements.push((utilGeneral.getKeyByValue(positionsEquivalences, auxPosition)) + position[2]);  
+            possibleMovements.push((utilGeneral.getKeyByValue(positionsEquivalences, auxPosition)) + position[1]);
     }    
     
-    for (let i = 1; i <= (parseInt(position[2]) - positionsEquivalences.A); i++) {
-        let auxPosition = parseInt(position[2]) - i;
+    for (let i = 1; i <= (parseInt(position[1]) - positionsEquivalences.A); i++) {
+        let auxPosition = parseInt(position[1]) - i;
 
         if(auxPosition >= positionsEquivalences.A)
-            possibleMovements.push((position[1] + auxPosition.toString()));    
+            possibleMovements.push((position[0] + auxPosition.toString()));
     }
 
-    for (let i = 1; i <= (positionsEquivalences.H - parseInt(position[2])); i++) {
-        let auxPosition = parseInt(position[2]) + i;
+    for (let i = 1; i <= (positionsEquivalences.H - parseInt(position[1])); i++) {
+        let auxPosition = parseInt(position[1]) + i;
 
         if( auxPosition <= positionsEquivalences.H)
-            possibleMovements.push((position[1] + auxPosition.toString()));  
+            possibleMovements.push((position[0] + auxPosition.toString()));
     }
 
     let responsePossibleMovements = [];
@@ -78,10 +79,11 @@ function calculateRookMovment(position) {
 
 const getPossibleMovementsByPosition = (req, res) => {
     const chessPiece = req.body.position;
-    
+    console.log(req.body.position);
     try {
         switch (req.params.piece) {
             case 'knight':
+                console.log('entra');
                 res.status(200).send(calculateKnightMovment(req.body.position));
                 break;
 
