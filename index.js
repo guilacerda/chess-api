@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
-const movements = require('./app/movments');
+const movements = require('./app/movements');
 
 app.use(bodyParser.json());
 app.use(
@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
     })
 });
 
-app.post('/movement/:piece', movements.getPossibleMovmentsByPosition);
+app.post('/movement/:piece', movements.getPossibleMovementsByPosition);
 
 app.listen(port, () => {
     console.log(`App running on port ${port}`);
