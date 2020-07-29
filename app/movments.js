@@ -1,6 +1,4 @@
-function getKeyByValue(dict, value) {
-    return Object.keys(dict).find(key => dict[key] === value);
-} 
+const utilGeneral  = require('../util/general')
 
 function calculateKnightMovment(position) {
     var positionsEquivalences = {
@@ -29,7 +27,7 @@ function calculateKnightMovment(position) {
                 xMovment = parseInt(positionsEquivalences[position[1]]) + xPossibleMovments[i];
                 yMovment = parseInt(position[2]) + yPossibleMovments[i];
                 possibleMovments.push(
-                    (getKeyByValue(positionsEquivalences, xMovment)) +
+                    (utilGeneral.getKeyByValue(positionsEquivalences, xMovment)) +
                     (yMovment).toString());
             }
     }
@@ -47,7 +45,7 @@ const getPossibleMovmentsByPosition = (req, res) => {
                 break;
 
             default:
-                res.status(404).send(`404 ${req.params.piece} Not Found. This piece does not exist.`);
+                res.status(404).send(`404 movment/${req.params.piece} Not Found. This piece does not exist.`);
                 break;
             }
     } catch (error) {
